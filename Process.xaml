@@ -147,7 +147,7 @@
     </ui:ForEachRow>
     <If Condition="[AddToQueue = True]" sap:VirtualizedContainerService.HintSize="817,208" sap2010:WorkflowViewState.IdRef="If_5">
       <If.Then>
-        <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_3" Priority="Normal" QueueType="[in_Config(&quot;BooksBillingRTMQueueName&quot;).ToString]" Reference="[in_TransactionItem(&quot;JobNbr&quot;).ToString]">
+        <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_3" Priority="Normal" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[in_TransactionItem(&quot;JobNbr&quot;).ToString]">
           <ui:AddQueueItem.ItemInformation>
             <InArgument x:TypeArguments="x:String" x:Key="JobNbr">[in_TransactionItem("JobNbr").ToString.Trim]</InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="Month">[in_TransactionField1]</InArgument>
