@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>498,1278</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>396,768</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>IntializeVisualLansa_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -58,30 +58,20 @@
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="IntializeVisualLansa" sap:VirtualizedContainerService.HintSize="478,881" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="IntializeVisualLansa" sap:VirtualizedContainerService.HintSize="376,668" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Name="FirstDayofTheMonth" />
       <Variable x:TypeArguments="s:DateTime" Name="LastDayOfTheMonth" />
       <Variable x:TypeArguments="sd:DataTable" Default="[io_ReportDT]" Name="ReportDT" />
+      <Variable x:TypeArguments="s:DateTime" Name="Today" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,192" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <v:Sign_In___Prod DisplayName="Sign In - Prod" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Sign_In___Prod_1" />
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <Assign sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <v:Sign_In___Prod DisplayName="Sign In - Prod" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Sign_In___Prod_1" />
+    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[Today]</OutArgument>
       </Assign.To>
@@ -89,7 +79,7 @@
         <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="First DateTime to Pass month " sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="First DateTime to Pass month " sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[FirstDayOfTheMonth]</OutArgument>
       </Assign.To>
@@ -97,29 +87,25 @@
         <InArgument x:TypeArguments="s:DateTime">[new DateTime(Today.Year, Today.Month, 1).AddMonths(-1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Second DateTime to Pass" sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign DisplayName="Second DateTime to Pass" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[LastDayOfTheMonth]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="s:DateTime">[FirstDayOfTheMonth.AddDays(-1)]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime">[FirstDayOfTheMonth.AddMonths(1).AddDays(-1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,257" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CloseExcelReadCSV workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\CloseExcelReadCSV.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ReportDT">[io_ReportDT]</OutArgument>
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NavigateToVisualLansaReport workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\NavigateToVisualLansaReport.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config" />
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_FirstDayOfTheMonth">[FirstDayofTheMonth]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_LastDayOfTheMonth">[LastDayOfTheMonth]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CloseExcelReadCSV workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\CloseExcelReadCSV.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ReportDT">[io_ReportDT]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>

@@ -90,10 +90,7 @@
       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke IntializeVisualLansa workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\IntializeVisualLansa.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[io_Config]</InArgument>
-          <InOutArgument x:TypeArguments="x:Int32" x:Key="io_AuditYear">[io_AuditYear]</InOutArgument>
-          <InOutArgument x:TypeArguments="x:Int32" x:Key="io_LastMonth">[io_LastMonth]</InOutArgument>
-          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_ReportDT">[io_ReportDT]</InOutArgument>
-          <InArgument x:TypeArguments="x:Int32" x:Key="in_LastDayOfMonth" />
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="io_ReportDT" />
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Parallel>
