@@ -1,9 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="NavigateToVisualLansaReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="NavigateToVisualLansaReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_LastMonth" Type="InArgument(x:Int32)" />
-    <x:Property Name="in_AuditYear" Type="InOutArgument(x:Int32)" />
-    <x:Property Name="in_LastDayOfMonth" Type="InOutArgument(x:Int32)" />
+    <x:Property Name="in_FirstDayOfTheMonth" Type="InArgument(s:DateTime)" />
+    <x:Property Name="in_LastDayOfTheMonth" Type="InArgument(s:DateTime)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -174,7 +173,7 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,2151" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,2152" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Default="[in_LastDayOfMonth]" Name="LastDayOfMonth" />
               <Variable x:TypeArguments="x:String" Default="[in_LastMonth.ToString]" Name="LastMonthString" />
@@ -187,7 +186,7 @@
                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[LastMonth &lt; 10]" DisplayName="If Month is Single Digit" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[LastMonth &lt; 10]" DisplayName="If Month is Single Digit" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -204,7 +203,7 @@
                 </Assign>
               </If.Then>
             </If>
-            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 1st Date Range Field" EmptyField="False" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="True" SimulateType="False" Text="[LastMonthString + &quot;01&quot; + AuditYear.ToString + &quot;[k(tab)]&quot;]">
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 1st Date Range Field" EmptyField="False" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="True" SimulateType="False" Text="[in_FirstDayOfTheMonth.Month.ToString+ &quot;01&quot; + in_FirstDayOfTheMonth.Year.ToString+ &quot;[k(tab)]&quot;]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="53cfe7a41d761a19c14669b59afdc152" Selector="&lt;wnd aaname='Primary searches - Must enter Dates and Reason' cls='LpVoGroupBox' /&gt;&lt;wnd aaname='Date Range' cls='LpVoPanel' /&gt;&lt;wnd cls='LpVoDateTime' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -221,7 +220,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:TypeInto>
-            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 2nd Date Range Field" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[LastMonthString + LastDayOfMonth.ToString + AuditYear.ToString + &quot;[k(tab)][k(tab)][k(enter)]&quot;]">
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 2nd Date Range Field" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[in_LastDayOfTheMonth.Month.ToString + in_LastDayOfTheMonth.Day.ToString + in_LastDayOfTheMonth.Year.ToString + &quot;[k(tab)][k(tab)][k(enter)]&quot;]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c2acb78a96526eb1bd2b806e51098816" Selector="&lt;wnd aaname='Primary searches - Must enter Dates and Reason' cls='LpVoGroupBox' /&gt;&lt;wnd aaname='To' cls='LpVoPanel' /&gt;&lt;wnd cls='LpVoDateTime' /&gt;">
                   <ui:Target.TimeoutMS>
